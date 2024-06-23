@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePersonaRequest;
 use Illuminate\Http\Request;
 use App\Models\Persona;
 
@@ -18,21 +19,21 @@ class PersonaController extends Controller
         return view('personas.create');
     }
 
-    public function store(Request $request)
+    // Modificar el método store para usar CreatePersonaRequest
+    public function store(CreatePersonaRequest $request)
     {
-        $request->validate([
-            'cPerApellido' => 'required|string|max:255',
-            'cPerNombre' => 'required|string|max:255',
-            'cPerDireccion' => 'required|string|max:255',
-            'dPerFecNac' => 'required|date',
-            'nPerEdad' => 'required|integer',
-            'nPerSueldo' => 'required|numeric',
-            'nPerEstado' => 'required|in:0,1',
-            'cPerRnd' => 'required|string|max:255',
-        ]);
+        // La validación se realiza automáticamente con CreatePersonaRequest
 
-        Persona::create($request->all());
+        // Obtenemos los datos validados
+        $validatedData = $request->validated();
 
+        // Agregar un valor para cPerRnd
+        $validatedData['cPerRnd'] = 'abc123xyz'; // Puedes cambiar esto según tus necesidades
+
+        // Guardamos la nueva persona en la base de datos
+        Persona::create($validatedData);
+
+        // Redirigimos a la lista de personas con un mensaje de éxito
         return redirect()->route('personas.index')->with('success', 'Persona creada exitosamente.');
     }
 }
