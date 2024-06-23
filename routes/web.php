@@ -12,6 +12,9 @@ Route::get('/', function () {
 });
 
 Route::get('/personas', [PersonaController::class, 'index'])->name('personas.index');
+Route::get('/personas/create', [PersonaController::class, 'create'])->name('personas.create');
+Route::post('/personas', [PersonaController::class, 'store'])->name('personas.store');
+
 Route::get('/contacto', function () {
-    return view('contacto'); 
+    return view('contacto');
 })->name('contacto');
