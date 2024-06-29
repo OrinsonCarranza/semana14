@@ -39,6 +39,11 @@
                 <td>{{ $persona->cPerNombre }}</td>
                 <td>
                     <a href="{{ route('personas.edit', $persona->nPerCodigo) }}">Editar</a>
+                    <form action="{{ route('personas.destroy', $persona->nPerCodigo) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta persona?')">Eliminar</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

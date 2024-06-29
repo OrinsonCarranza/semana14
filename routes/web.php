@@ -11,6 +11,7 @@ Route::get('/personas/create', [PersonaController::class, 'create'])->name('pers
 Route::post('/personas', [PersonaController::class, 'store'])->name('personas.store');
 Route::get('/personas/{persona}/edit', [PersonaController::class, 'edit'])->name('personas.edit');
 Route::put('/personas/{persona}', [PersonaController::class, 'update'])->name('personas.update');
+Route::delete('/personas/{persona}', [PersonaController::class, 'destroy'])->name('personas.destroy');
 
 Route::get('/contacto', function () {
     return view('contacto');

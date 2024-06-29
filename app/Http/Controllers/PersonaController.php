@@ -41,4 +41,13 @@ class PersonaController extends Controller
         $persona->update($validatedData);
         return redirect()->route('personas.index')->with('success', 'Persona actualizada exitosamente.');
     }
+
+    public function destroy($nPerCodigo)
+    {
+        $persona = Persona::findOrFail($nPerCodigo);
+        $persona->delete();
+    
+        return redirect()->route('personas.index')->with('success', 'Persona eliminada exitosamente.');
+    }
+
 }
