@@ -29,13 +29,7 @@
             <tr>
                 <th>Apellido</th>
                 <th>Nombre</th>
-                <!-- <th>Dirección</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Edad</th>
-                <th>Sueldo</th>
-                <th>RND</th>
-                <th>Estado</th>
-                <th>Sexo</th> -->
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -43,14 +37,10 @@
             <tr>
                 <td>{{ $persona->cPerApellido }}</td>
                 <td>{{ $persona->cPerNombre }}</td>
-                <!-- <td>{{ $persona->cPerDireccion }}</td>
-                <td>{{ $persona->dPerFecNac }}</td>
-                <td>{{ $persona->nPerEdad }}</td>
-                <td>{{ $persona->nPerSueldo }}</td>
-                <td>{{ $persona->cPerRnd }}</td>
-                <td>{{ $persona->nPerEstado ? 'Activo' : 'Inactivo' }}</td>
-                <td>{{ $persona->cPerSexo }}</td>
-            </tr> -->
+                <td>
+                    <a href="{{ route('personas.edit', $persona->nPerCodigo) }}">Editar</a>
+                </td>
+            </tr>
             @endforeach
         </tbody>
     </table>

@@ -16,24 +16,29 @@ class PersonaController extends Controller
 
     public function create()
     {
-        return view('personas.create');
+        $persona = new Persona();
+        return view('personas.create', compact('persona'));
     }
 
-    // Modificar el método store para usar CreatePersonaRequest
     public function store(CreatePersonaRequest $request)
     {
-        // La validación se realiza automáticamente con CreatePersonaRequest
-
-        // Obtenemos los datos validados
         $validatedData = $request->validated();
-
-        // Agregar un valor para cPerRnd
-        $validatedData['cPerRnd'] = 'abc123xyz'; // Puedes cambiar esto según tus necesidades
-
-        // Guardamos la nueva persona en la base de datos
+        $validatedData['cPerRnd'] = 'abc123xyz';
         Persona::create($validatedData);
-
-        // Redirigimos a la lista de personas con un mensaje de éxito
         return redirect()->route('personas.index')->with('success', 'Persona creada exitosamente.');
+    }
+
+    public function edit($nPerCodigo)
+    {
+        $persona = Persona::findOrFail($nPerCodigo);
+        return view('personas.edit', compact('persona'));
+    }
+
+    public function update(CreatePersonaRequest $request, $nPerCodigo)
+    {
+        $persona = Persona::findOrFail($nPerCodigo);
+        $validatedData = $request->validated();
+        $persona->update($validatedData);
+        return redirect()->route('personas.index')->with('success', 'Persona actualizada exitosamente.');
     }
 }

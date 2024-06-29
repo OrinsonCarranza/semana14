@@ -6,20 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreatePersonaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
-        // Cambiar a true para autorizar la validación
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules()
     {
         return [
@@ -32,10 +23,6 @@ class CreatePersonaRequest extends FormRequest
             'nPerEstado' => 'required|boolean',
         ];
     }
-
-    /**
-     * Get custom messages for validator errors.
-     */
     public function messages()
     {
         return [

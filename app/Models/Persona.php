@@ -11,14 +11,18 @@ class Persona extends Model
 
     protected $table = 'persona';
 
+    protected $primaryKey = 'nPerCodigo'; 
+
     protected $fillable = [
-        'cPerApellido',
-        'cPerNombre',
-        'cPerDireccion',
-        'dPerFecNac',
-        'nPerEdad',
-        'nPerSueldo',
+        'cPerApellido', 
+        'cPerNombre', 
+        'cPerDireccion', 
+        'dPerFecNac', 
+        'nPerEdad', 
+        'nPerSueldo', 
         'nPerEstado',
-        'cPerRnd',
+        'cPerRnd'
     ];
+
+    public $timestamps = false; 
 }
