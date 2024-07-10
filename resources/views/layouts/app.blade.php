@@ -3,6 +3,7 @@
 <head>
     <title>@yield('title', 'Aplicación Laravel')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
