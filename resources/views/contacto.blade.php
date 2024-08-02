@@ -74,12 +74,18 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
             <button type="reset" class="btn btn-secondary">Cancelar</button>
         </form>
-
-        @if (session('success'))
+        @include('partials.sesion-estado')
+        <!-- @if (session('success'))
             <div class="alert alert-success mt-3">
                 {{ session('success') }}
-            </div>
-        @endif
+            </div> -->
+        <!-- @else
+            <form action="{{ route('contacto') }}" method="post">
+            @csrf{{--Formulario Seguro--}}
+            <tbody>
+            </tbody>
+            </form> 
+        @endif-->
     </div>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
