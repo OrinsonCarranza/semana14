@@ -8,6 +8,13 @@ use App\Models\Persona;
 
 class PersonaController extends Controller
 {
+//--------------------------MIDDLEWARE METODOS    
+    public function __construct()
+    {
+        // Middleware 'logi' solo a los métodos 'edit' y 'destroy'para que no puedan editar ni eliminar si no están logueados
+        $this->middleware('auth')->only(['edit', 'destroy']);
+    }
+//-------------------------
     public function index()
     {
         $personas = Persona::all();

@@ -33,6 +33,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//---------MIDDLEWARE A RUTA, PERO BASTA CON QUE NO PUEDA EDITAR NI ELIMINAR SIN ANTES HABERSE LOGUEADO
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware('auth'); 
 
 // Usamos Route::resource para definir todas las rutas RESTful para personas
 Route::resource('personas', PersonaController::class);
@@ -52,6 +56,10 @@ Route::resource('servicios', ServiciosController::class)->names('servicios');
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
