@@ -48,3 +48,11 @@ Route::post('/contacto', [ContactoController::class, 'store'])->name('contacto.s
 // Ruta resource para el controlador Servicios
 Route::resource('servicios', ServiciosController::class)->names('servicios');
 
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
