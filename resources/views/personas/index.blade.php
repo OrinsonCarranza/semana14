@@ -21,7 +21,9 @@
     <nav>
         <a href="/">Inicio</a> -
         <a href="{{ route('personas.index') }}">Personas</a> -
+        @auth
         <a href="{{ route('personas.create') }}">Crear Persona</a> -
+        @endauth
         <a href="{{ route('contacto') }}">Contacto</a>
     </nav>
     <table>

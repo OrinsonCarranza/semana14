@@ -37,7 +37,9 @@
         <nav class="mb-4">
             <a href="/">Inicio</a> -
             <a href="{{ route('personas.index') }}">Personas</a> -
+            @auth
             <a href="{{ route('personas.create') }}">Crear Persona</a> -
+            @endauth
             <a href="{{ route('contacto') }}">Contacto</a>
         </nav>
         <p>Puedes ponerte en contacto con nosotros a través del siguiente formulario:</p>
