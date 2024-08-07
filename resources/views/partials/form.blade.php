@@ -1,8 +1,17 @@
-<form action="{{ $action }}" method="POST">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
     @if($method === 'PUT')
         @method('PUT')
     @endif
+    
+    <tr>
+        <td colspan="2">
+            <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Seleccione Archivo</label>
+            </div>
+        </td>
+    </tr>
 
     <div>
         <label for="cPerApellido">Apellido:</label>

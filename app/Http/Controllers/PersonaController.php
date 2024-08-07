@@ -31,7 +31,13 @@ class PersonaController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['cPerRnd'] = 'abc123xyz';
+
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images');
+        }
+
         Persona::create($validatedData);
+
         return redirect()->route('personas.index')->with('success', 'Persona creada exitosamente.');
     }
 
