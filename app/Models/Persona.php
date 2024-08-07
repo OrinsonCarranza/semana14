@@ -21,8 +21,9 @@ class Persona extends Model
         'nPerEdad', 
         'nPerSueldo', 
         'nPerEstado',
-        'cPerRnd'
+        'cPerRnd',
+        'image'
     ];
 
-    public $timestamps = false; 
+    public $timestamps = true; 
 }

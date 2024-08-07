@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('nPerSueldo', 6, 2);
             $table->string('cPerRnd', 50);
             $table->char('nPerEstado', 1);
+            $table->string('image')->nullable(); //Nuevo
             $table->timestamps();
         });
     }
