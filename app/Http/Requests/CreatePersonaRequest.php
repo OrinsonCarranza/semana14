@@ -21,6 +21,7 @@ class CreatePersonaRequest extends FormRequest
             'nPerEdad' => 'required|integer|min:0',
             'nPerSueldo' => 'required|numeric|min:0',
             'nPerEstado' => 'required|boolean',
+            'image' => ['required', 'mimes:jpeg,png'] // Validación para la imagen
         ];
     }
     public function messages()
@@ -39,6 +40,7 @@ class CreatePersonaRequest extends FormRequest
             'nPerSueldo.min' => 'El sueldo no puede ser negativo.',
             'nPerEstado.required' => 'El estado es obligatorio.',
             'nPerEstado.boolean' => 'El estado debe ser verdadero o falso.',
+            'image.required' => "Debe subir una imagen. El campo no puede estar vacío"
         ];
     }
 }
