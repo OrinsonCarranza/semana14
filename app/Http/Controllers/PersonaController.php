@@ -47,20 +47,59 @@ class PersonaController extends Controller
         return view('personas.edit', compact('persona'));
     }
 
+    // public function update(CreatePersonaRequest $request, $nPerCodigo)
+    // {
+    //     $persona = Persona::findOrFail($nPerCodigo);
+    //     $validatedData = $request->validated();
+    //     $persona->update($validatedData);
+    //     return redirect()->route('personas.index')->with('success', 'Persona actualizada exitosamente.');
+    // }
+
     public function update(CreatePersonaRequest $request, $nPerCodigo)
-    {
-        $persona = Persona::findOrFail($nPerCodigo);
-        $validatedData = $request->validated();
-        $persona->update($validatedData);
-        return redirect()->route('personas.index')->with('success', 'Persona actualizada exitosamente.');
+{
+    $persona = Persona::findOrFail($nPerCodigo);
+
+    // Filtramos los datos para eliminar cualquier valor null
+    $validatedData = array_filter($request->validated());
+
+    // Si hay una nueva imagen, la subimos y eliminamos la anterior
+    if ($request->hasFile('image')) {
+        // Eliminar la imagen anterior si existe
+        if ($persona->image) {
+            \Storage::delete($persona->image);
+        }
+
+        // Guardar la nueva imagen
+        $validatedData['image'] = $request->file('image')->store('images');
     }
 
-    public function destroy($nPerCodigo)
-    {
-        $persona = Persona::findOrFail($nPerCodigo);
-        $persona->delete();
+    // Actualizamos la persona con los datos filtrados
+    $persona->update($validatedData);
+
+    return redirect()->route('personas.index')->with('success', 'Persona actualizada exitosamente.');
+}
+
+    // public function destroy($nPerCodigo)
+    // {
+    //     $persona = Persona::findOrFail($nPerCodigo);
+    //     $persona->delete();
     
-        return redirect()->route('personas.index')->with('success', 'Persona eliminada exitosamente.');
+    //     return redirect()->route('personas.index')->with('success', 'Persona eliminada exitosamente.');
+    // }
+
+    public function destroy($nPerCodigo)
+{
+    $persona = Persona::findOrFail($nPerCodigo);
+
+    // Eliminar la imagen del servidor si existe
+    if ($persona->image) {
+        \Storage::delete($persona->image);
     }
+
+    $persona->delete();
+    
+    return redirect()->route('personas.index')->with('success', 'Persona eliminada exitosamente.');
+}
+
 
 }
